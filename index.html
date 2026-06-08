@@ -1,83 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AgroSoja - Painel do Produtor</title>
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Segoe UI, Arial, sans-serif;
-}
-
-body{
-    background:#f2f5f2;
-    color:#222;
-}
-
-header{
-    background:linear-gradient(135deg,#2e7d32,#43a047);
-    color:white;
-    text-align:center;
-    padding:25px;
-}
-
-header h1{
-    font-size:2.2rem;
-}
-
-.container{
-    max-width:1200px;
-    margin:auto;
-    padding:20px;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:20px;
-}
-
-.card{
-    background:white;
-    border-radius:15px;
-    padding:20px;
-    box-shadow:0 4px 12px rgba(0,0,0,.08);
-}
-
-.card h2{
-    color:#2e7d32;
-    margin-bottom:15px;
-}
-
-.preco{
-    font-size:2rem;
-    font-weight:bold;
-}
-
-.status{
-    color:green;
-    font-weight:bold;
-}
-
-footer{
-    text-align:center;
-    padding:20px;
-    color:#777;
-}
-
-.relogio{
-    font-size:2rem;
-    font-weight:bold;
-}
-
-.estacao{
-    font-size:2rem;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroSoja - Painel do Produtor</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -88,147 +15,63 @@ footer{
 
 <div class="container">
 
-<div class="grid">
+    <div class="grid">
 
-<div class="card">
-    <h2>🌱 Cotação da Soja</h2>
+        <div class="card">
+            <h2>🌱 Cotação da Soja</h2>
+            <div class="preco" id="preco">
+                R$ 124,36/sc
+            </div>
+            <br>
+            <p>Indicador CEPEA/PR</p>
+            <p>Atualizado: <span id="dataCotacao">05/06/2026</span></p>
+            <br>
+            <span class="status" id="status">
+                ● Mercado Aberto
+            </span>
+        </div>
 
-    <div class="preco">
-        R$ 124,36/sc
+        <div class="card">
+            <h2>🌦 Clima Atual</h2>
+            <p>Temperatura: <span id="temp">Carregando...</span>°C</p>
+            <p>Vento: <span id="vento">Carregando...</span> km/h</p>
+        </div>
+
+        <div class="card">
+            <h2>📅 Estação do Ano</h2>
+            <div class="estacao" id="estacao">...</div>
+        </div>
+
+        <div class="card">
+            <h2>🕒 Horário Atual</h2>
+            <div class="relogio" id="relogio">...</div>
+        </div>
+
+        <div class="card">
+            <h2>📊 Informações da Safra</h2>
+            <ul>
+                <li>Monitoramento climático</li>
+                <li>Acompanhamento de preços</li>
+                <li>Atualização automática</li>
+                <li>Interface responsiva</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>📈 Resumo</h2>
+            <p><strong>Produto:</strong> Soja</p>
+            <p><strong>Unidade:</strong> Saca 60kg</p>
+            <p><strong>Fonte:</strong> CEPEA</p>
+        </div>
+
     </div>
-
-    <br>
-
-    <p>Indicador CEPEA/PR</p>
-    <p>Atualizado: 05/06/2026</p>
-
-    <br>
-
-    <span class="status">
-        ● Mercado Aberto
-    </span>
-</div>
-
-<div class="card">
-    <h2>🌦 Clima Atual</h2>
-
-    <p>Temperatura: <span id="temp">Carregando...</span>°C</p>
-    <p>Vento: <span id="vento">Carregando...</span> km/h</p>
-</div>
-
-<div class="card">
-    <h2>📅 Estação do Ano</h2>
-
-    <div class="estacao" id="estacao">
-        ...
-    </div>
-</div>
-
-<div class="card">
-    <h2>🕒 Horário Atual</h2>
-
-    <div class="relogio" id="relogio">
-        ...
-    </div>
-</div>
-
-<div class="card">
-    <h2>📊 Informações da Safra</h2>
-
-    <ul>
-        <li>Monitoramento climático</li>
-        <li>Acompanhamento de preços</li>
-        <li>Atualização automática</li>
-        <li>Interface responsiva</li>
-    </ul>
-</div>
-
-<div class="card">
-    <h2>📈 Resumo</h2>
-
-    <p><strong>Produto:</strong> Soja</p>
-    <p><strong>Unidade:</strong> Saca 60kg</p>
-    <p><strong>Fonte:</strong> CEPEA</p>
-</div>
-
-</div>
 
 </div>
 
 <footer>
-AgroSoja © 2026
+    AgroSoja © 2026
 </footer>
 
-<script>
-
-async function carregarClima(){
-
-    try{
-
-        // Ampére - PR
-        const latitude = -25.916;
-        const longitude = -53.470;
-
-        const resposta = await fetch(
-        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,wind_speed_10m`
-        );
-
-        const dados = await resposta.json();
-
-        document.getElementById("temp").innerText =
-            dados.current.temperature_2m;
-
-        document.getElementById("vento").innerText =
-            dados.current.wind_speed_10m;
-
-    }catch{
-
-        document.getElementById("temp").innerText = "--";
-        document.getElementById("vento").innerText = "--";
-
-    }
-}
-
-function atualizarRelogio(){
-
-    const agora = new Date();
-
-    document.getElementById("relogio").innerText =
-        agora.toLocaleTimeString("pt-BR");
-
-}
-
-function atualizarEstacao(){
-
-    const mes = new Date().getMonth() + 1;
-
-    let estacao;
-
-    if(mes == 12 || mes <= 2){
-        estacao = "☀️ Verão";
-    }
-    else if(mes <= 5){
-        estacao = "🍂 Outono";
-    }
-    else if(mes <= 8){
-        estacao = "❄️ Inverno";
-    }
-    else{
-        estacao = "🌸 Primavera";
-    }
-
-    document.getElementById("estacao").innerText = estacao;
-
-}
-
-carregarClima();
-atualizarEstacao();
-atualizarRelogio();
-
-setInterval(atualizarRelogio,1000);
-setInterval(carregarClima,600000);
-
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
