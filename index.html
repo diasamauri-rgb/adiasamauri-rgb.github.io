@@ -1,90 +1,234 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgroSoja - Painel do Produtor</title>
 
-  <title>Agrinho 2026 - Agricultura Inteligente</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, Arial, sans-serif;
+}
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+body{
+    background:#f2f5f2;
+    color:#222;
+}
+
+header{
+    background:linear-gradient(135deg,#2e7d32,#43a047);
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+header h1{
+    font-size:2.2rem;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.card h2{
+    color:#2e7d32;
+    margin-bottom:15px;
+}
+
+.preco{
+    font-size:2rem;
+    font-weight:bold;
+}
+
+.status{
+    color:green;
+    font-weight:bold;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    color:#777;
+}
+
+.relogio{
+    font-size:2rem;
+    font-weight:bold;
+}
+
+.estacao{
+    font-size:2rem;
+}
+</style>
 </head>
-
 <body>
 
 <header>
-  <h1>🌱 Agrinho 2026</h1>
-  <p>Irrigação Inteligente com Tecnologia e Sustentabilidade</p>
+    <h1>🌾 AgroSoja</h1>
+    <p>Monitoramento de Soja e Clima</p>
 </header>
 
-<main>
+<div class="container">
 
-<section class="card">
-  <h2>💡 Problema</h2>
-  <p>Desperdício de água na agricultura por falta de controle automatizado da irrigação.</p>
-</section>
+<div class="grid">
 
-<section class="card">
-  <h2>🚀 Solução</h2>
-  <p>Sistema inteligente que detecta a umidade do solo e ativa a irrigação automaticamente.</p>
-</section>
+<div class="card">
+    <h2>🌱 Cotação da Soja</h2>
 
-<section class="card">
-  <h2>🤖 Simulação</h2>
+    <div class="preco">
+        R$ 124,36/sc
+    </div>
 
-  <button onclick="setUmidade(15)">Solo seco</button>
-  <button onclick="setUmidade(75)">Solo úmido</button>
+    <br>
 
-  <p>Umidade atual: <span id="umidade">--</span>%</p>
-  <p id="acao">Aguardando sensores...</p>
-</section>
+    <p>Indicador CEPEA/PR</p>
+    <p>Atualizado: 05/06/2026</p>
 
-<section class="card">
-  <h2>📊 Eficiência</h2>
+    <br>
 
-  <p>Tradicional</p>
-  <div class="bar"><div class="fill red"></div></div>
+    <span class="status">
+        ● Mercado Aberto
+    </span>
+</div>
 
-  <p>Inteligente</p>
-  <div class="bar"><div class="fill green"></div></div>
-</section>
+<div class="card">
+    <h2>🌦 Clima Atual</h2>
 
-<section class="card">
-  <h2>🧠 Pensamento Computacional</h2>
-  <ul>
-    <li>Decomposição do problema</li>
-    <li>Identificação de padrões</li>
-    <li>Algoritmo de decisão</li>
-    <li>Automação do sistema</li>
-  </ul>
-</section>
+    <p>Temperatura: <span id="temp">Carregando...</span>°C</p>
+    <p>Vento: <span id="vento">Carregando...</span> km/h</p>
+</div>
 
-<section class="card">
-  <h2>🎥 Tecnologia no Campo</h2>
+<div class="card">
+    <h2>📅 Estação do Ano</h2>
 
-  <iframe width="100%" height="300"
-    src="https://www.youtube.com/embed/4ZcG9G7mC5A"
-    allowfullscreen>
-  </iframe>
-</section>
+    <div class="estacao" id="estacao">
+        ...
+    </div>
+</div>
 
-<section class="card">
-  <h2>🎵 Trilha Sonora</h2>
-  <p>Ambiente rural e natureza para representar sustentabilidade.</p>
+<div class="card">
+    <h2>🕒 Horário Atual</h2>
 
-  <audio controls loop autoplay>
-    <source src="natureza.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-  </audio>
-</section>
+    <div class="relogio" id="relogio">
+        ...
+    </div>
+</div>
 
-</main>
+<div class="card">
+    <h2>📊 Informações da Safra</h2>
+
+    <ul>
+        <li>Monitoramento climático</li>
+        <li>Acompanhamento de preços</li>
+        <li>Atualização automática</li>
+        <li>Interface responsiva</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>📈 Resumo</h2>
+
+    <p><strong>Produto:</strong> Soja</p>
+    <p><strong>Unidade:</strong> Saca 60kg</p>
+    <p><strong>Fonte:</strong> CEPEA</p>
+</div>
+
+</div>
+
+</div>
 
 <footer>
-  <p>🌱 Projeto Agrinho 2026 - Desenvolvido com tecnologia e consciência ambiental</p>
+AgroSoja © 2026
 </footer>
 
-<script src="script.js"></script>
+<script>
+
+async function carregarClima(){
+
+    try{
+
+        // Ampére - PR
+        const latitude = -25.916;
+        const longitude = -53.470;
+
+        const resposta = await fetch(
+        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,wind_speed_10m`
+        );
+
+        const dados = await resposta.json();
+
+        document.getElementById("temp").innerText =
+            dados.current.temperature_2m;
+
+        document.getElementById("vento").innerText =
+            dados.current.wind_speed_10m;
+
+    }catch{
+
+        document.getElementById("temp").innerText = "--";
+        document.getElementById("vento").innerText = "--";
+
+    }
+}
+
+function atualizarRelogio(){
+
+    const agora = new Date();
+
+    document.getElementById("relogio").innerText =
+        agora.toLocaleTimeString("pt-BR");
+
+}
+
+function atualizarEstacao(){
+
+    const mes = new Date().getMonth() + 1;
+
+    let estacao;
+
+    if(mes == 12 || mes <= 2){
+        estacao = "☀️ Verão";
+    }
+    else if(mes <= 5){
+        estacao = "🍂 Outono";
+    }
+    else if(mes <= 8){
+        estacao = "❄️ Inverno";
+    }
+    else{
+        estacao = "🌸 Primavera";
+    }
+
+    document.getElementById("estacao").innerText = estacao;
+
+}
+
+carregarClima();
+atualizarEstacao();
+atualizarRelogio();
+
+setInterval(atualizarRelogio,1000);
+setInterval(carregarClima,600000);
+
+</script>
 
 </body>
 </html>
